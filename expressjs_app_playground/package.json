@@ -1,0 +1,23 @@
+{
+  "name": "expressjs_app_playground",
+  "version": "1.0.0",
+  "description": "Studying and practicing the Node.js HTTP framework -- ExpressJS.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "ejs": "^2.6.1",
+    "express": "*",
+    "express-validator": "^5.3.1",
+    "mongojs": "^2.6.0"
+  },
+  "keywords": [
+    "Express",
+    "Node.js"
+  ],
+  "author": "Wenming",
+  "license": "ISC"
+}

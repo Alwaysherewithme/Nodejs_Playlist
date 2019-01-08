@@ -1,0 +1,46 @@
+<% include partials/header %>    
+    <h1><%= greeting %> EJS!</h1>
+    <% if(myErrors) { %>
+        <ul>
+            <% myErrors.forEach(function(error) { %>
+                <li><%= error.msg %></li>
+            <% })%>
+        </ul>
+    <% } %>
+    <hr />
+    <h2>Add User</h2>
+    <form method="POST" action="/users/add">
+        <div>
+            <label>ID:</label>
+            <input type="number" name="id" />
+        </div>
+        <div>
+            <label>Name:</label>
+            <input type="text" name="name" />
+        </div>
+        <div>
+            <label>Age:</label>
+            <input type="number" name="age" />
+        </div>
+        <div>
+            <label>Gender:</label>
+            <input type="radio" name="isMale" value="true" />M
+            <input type="radio" name="isMale" value="false" />F
+        </div>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+    <ul>
+    <% users.forEach(function(user) { %>
+        <li><%= user.id %> . <%= user.name %> : <%= user.age %>,
+            <!-- <%= typeof(user.isMale) %>
+            <% if(user.isMale == 'true') { %>
+                <%= 'M' %>
+            <% } else { %>
+                <%= 'F' %>
+            <% } %> -->
+            <%= (user.isMale.toString() == 'true' ? 'M' : 'F') %> <button class="deleteUser" data-id="<%= user._id %>">X</button></li>
+    <% }) %>
+    </ul>
+<% include partials/footer %>
