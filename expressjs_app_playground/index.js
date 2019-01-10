@@ -1,15 +1,35 @@
-var express = require('express')
-var bodyParser = require('body-parser')
-var path = require('path')   // core module in Node.js
+const express = require('express')
+const bodyParser = require('body-parser')
+const path = require('path')   // core module in Node.js
 var expressValidator = require('express-validator')
 var mongojs = require('mongojs')
+const mongoose = require('mongoose')
+let StudentsModel = require('./models/students')
 
-var app = express()
+
+/**
+ * Initial App
+ */
+const app = express()
 const port = 3000
 
 var ObjectId = mongojs.ObjectId
 
-var db = mongojs('wm', ['students'])
+// Monojs: Simple usage for a local db
+// var db = mongojs('wm', ['students'])
+
+mongoose.connect('mongodb://localhost/wm')
+let db_mongoose = mongoose.connection
+
+// Mongoose: Check connection
+db_mongoose.once('open', () => {
+    console.log('Connected to MonogDB with Mongoose...')
+})
+
+// Mongoose: Check error
+db_mongoose.on('error', (err) => {
+    console.log(err)
+})
 
 /**
  * 1. Middlewares are basically functions that have access to req, res objects and also access to the next piece of middleware that's going to fire after it.
@@ -18,9 +38,13 @@ var db = mongojs('wm', ['students'])
  * 4. The middleware runs every time the application is reloaded.
  */
 
-// View Engine
-app.set('view engine', 'ejs')
+
+/**
+ * Load View Engine
+ */
 app.set('views', path.join(__dirname, 'views'))   // Created views folder
+// app.set('view engine', 'ejs')
+app.set('view engine', 'pug')
 
 // Creating custom middleware
 var logger = function(req, res, next) {
@@ -85,6 +109,9 @@ var students = [
     }
 ]
 
+/**
+ * Home Route
+ */
 app.get('/', (req, res) => {
     res.send('Hello World!')
     // res.json(tom);
@@ -97,11 +124,45 @@ app.get('/index', (req, res) => {
     // res.json(students);
 })
 
+app.get('/pug', (req, res) => {
+    StudentsModel.find({}, (err, students) => {
+        if(err) {
+            console.log(err)
+        } else {
+            res.render('pug/index', {
+                pugMsg: 'PUG',
+                pugStudents: students
+            })
+        }
+    })
+})
+
+
+app.post('/pug_students/add', (req, res) => {
+    let student = new StudentsModel()
+    student.id = req.body.id
+    student.name = req.body.name
+    student.age = req.body.age
+    student.isMale = req.body.isMale
+
+    student.save((err) => {
+        if(err) {
+            console.log(err)
+            return;
+        } else {
+            res.redirect('/pug')
+        }
+    })
+})
+
+
+
+/*
 app.get('/db_students', function(req, res) {
     // res.render('index')
     db.students.find(function(err, docs) {
         // console.log(docs)
-        res.render('index', {
+        res.render('ejs/index', {
             greeting: 'Hi',
             // users: 
             users: docs
@@ -156,7 +217,11 @@ app.delete('/users/delete/:id', function(req, res) {
         res.redirect('/db_students')
     })
 })
+*/
 
+/**
+ * Start Server
+ */
 app.listen(port, () => console.log(`Express app listening on port ${port}...`))
 
 // console.log("Hello Wenming!")

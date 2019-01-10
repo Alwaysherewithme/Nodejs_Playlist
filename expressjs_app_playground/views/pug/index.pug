@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    h1 Hello #{ pugMsg }!
+    ul
+        each student, i in pugStudents
+            li= student.name

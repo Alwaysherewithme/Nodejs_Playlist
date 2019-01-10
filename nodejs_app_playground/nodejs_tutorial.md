@@ -182,6 +182,7 @@ https://blog.fundebug.com/2017/04/10/nodejs-interview-2017/
 
 10个常见的Node.js面试题:
 https://www.jianshu.com/p/2e0284db8e1d
+https://www.jianshu.com/p/3416a0bf309c
 
 Node.js 的面试题是怎么样的？
 https://www.zhihu.com/question/24648388
@@ -191,6 +192,37 @@ https://w3ctech.com/topic/1969
 
 https://github.com/jimuyouyou/node-interview-questions
 
+Node.js Stream(流) 简单易懂全解析：
+https://www.jianshu.com/p/8738832e7515
+
+Express基本原理
+https://www.jianshu.com/p/c5e03b96d07d
+
+Nodejs Express 开发必备知识点
+https://blog.csdn.net/hellobeifeng/article/details/49746553
+
+Promise和Async/Await用法整理
+https://www.jianshu.com/p/fe0159f8beb4
+
+理解异步之美——Promise与async await（二）
+https://baijiahao.baidu.com/s?id=1609291002556086954&wfr=spider&for=pc
+
 
 https://www.devsaran.com/blog/10-best-nodejs-frameworks-developers
 http://nodeframework.com/
+
+Docker 跟 NodeJs 最佳实践
+https://www.cnblogs.com/ruicky/p/6595937.html
+
+Docker入门，看这篇就够了
+https://segmentfault.com/a/1190000009544565
+
+使用Dockerfile部署nodejs服务
+https://segmentfault.com/a/1190000012279808
+
+NODEJS 生成证书
+https://blog.csdn.net/fwj380891124/article/details/51758541
+
+
+zhouwenming0401@qq.com
+LondonUniv@wmz1994

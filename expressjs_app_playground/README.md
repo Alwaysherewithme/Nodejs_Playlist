@@ -23,7 +23,9 @@
 ## Installing Exptess
 - Requirements: `Node.js`, `NPM`
 > npm init
+
 > npm install express body-parser --save
+
 > node index.js
 
 - Created test.html in /public
@@ -33,8 +35,13 @@
 
 - Prepared MongoDB:
 > show dbs
+
 > use wm
+
 > db.createCollection('students')
+
 > show collections
+
 > db.students.insert([{"id":1,"name":"Tom","age":24,"isMale":true},{"id":2,"name":"Jack","age":20,"isMale":true},{"id":3,"name":"Nicole","age":22,"isMale":false}])
-> db.students.find()
+
+> db.students.find().pretty()
